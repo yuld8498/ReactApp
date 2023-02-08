@@ -682,8 +682,9 @@ slider.addEventListener("change", () => {
   currentTime.innerText = NumToTime(Math.ceil(audio.currentTime));
   showLyrics = renderLyrics(audio.currentTime);
   let end;
-   end = showLyrics[0].children ? 
-   getElementIndexLyrics(showLyrics, audio.currentTime):0 ;
+  end = showLyrics[0].children
+    ? getElementIndexLyrics(showLyrics, audio.currentTime)
+    : 0;
   for (let i = 0; i < end; i++) {
     showLyrics[0].children[i].setAttribute("style", "color:red");
   }
@@ -702,8 +703,7 @@ slider.addEventListener("change", () => {
     }
     thisLyrics = showLyrics;
 
-    if(thisLyrics[0].children){
-
+    if (thisLyrics[0].children) {
       clickChangeColor(thisLyrics, audio.currentTime);
     }
 
@@ -734,10 +734,14 @@ sublyricsTag.innerHTML = arrLyrics[0][2];
 
 audio.addEventListener("play", () => {
   if (showLyrics && showLyrics[0].children[0]) {
-   let start = getElementIndexLyrics(showLyrics, audio.currentTime);
-   let durationTime = Number(showLyrics[0].children[showLyrics[0].children.length-1].getAttribute('va'))
-   - Number (showLyrics[0].children[0].getAttribute('va'));
-   changeTextColor(start,showLyrics[0].children, durationTime );
+    let start = getElementIndexLyrics(showLyrics, audio.currentTime);
+    let durationTime =
+      Number(
+        showLyrics[0].children[showLyrics[0].children.length - 1].getAttribute(
+          "va"
+        )
+      ) - Number(showLyrics[0].children[0].getAttribute("va"));
+    changeTextColor(start, showLyrics[0].children, durationTime);
   }
   thisLyrics = renderLyrics(audio.currentTime);
   handleAudio = setInterval(() => {
